@@ -1,6 +1,8 @@
 package br.com.repository;
 
+import br.com.entidades.Pessoa;
+
 public interface IPessoaDao {
 	
-	public boolean verificarCadastro(String login, String senha);
+	public Pessoa verificarCadastro(String login, String senha);
 }

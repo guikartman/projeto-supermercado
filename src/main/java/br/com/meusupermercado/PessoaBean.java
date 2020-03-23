@@ -59,13 +59,21 @@ public class PessoaBean {
 	
 	public String logar() {
 		
-		if (pessoaDao.verificarCadastro(pessoa.getLogin(), pessoa.getSenha())) {
+		Pessoa usuarioLogado = pessoaDao.verificarCadastro(pessoa.getLogin(), pessoa.getSenha());
+		
+		if (usuarioLogado != null) {
 			FacesContext context = FacesContext.getCurrentInstance();
 			ExternalContext externalContext = context.getExternalContext();
-			externalContext.getSessionMap().put("usuarioLogado", pessoa);
+			externalContext.getSessionMap().put("usuarioLogado", usuarioLogado);
 			return "painel.jsf";
 		}
 		return "index.jsf";
 	}
 	
+	public boolean permitirAcesso(String acesso) {
+		FacesContext context = FacesContext.getCurrentInstance();
+		ExternalContext externalContext = context.getExternalContext();
+		Pessoa usuarioLogado = (Pessoa) externalContext.getSessionMap().get("usuarioLogado");
+		return usuarioLogado.getTipoUsuario().equals(acesso);
+	}
 }

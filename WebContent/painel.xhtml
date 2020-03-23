@@ -34,29 +34,29 @@
 				<f:selectItem itemValue="FEMININO" itemLabel="F"/>
 			</h:selectOneRadio>
 			
-			<h:outputLabel value="Tipo:" />
-			<h:selectOneMenu value="#{pessoaBean.pessoa.tipoUsuario}">
+			<h:outputLabel value="Tipo:" rendered="#{pessoaBean.permitirAcesso('ADMINISTRADOR')}"/>
+			<h:selectOneMenu value="#{pessoaBean.pessoa.tipoUsuario}" rendered="#{pessoaBean.permitirAcesso('ADMINISTRADOR')}">
 				<f:selectItem itemValue="ADMINISTRADOR" itemLabel="Administrador"/>
 				<f:selectItem itemValue="GERENTE" itemLabel="Gerente"/>
 				<f:selectItem itemValue="CAIXA" itemLabel="Caixa"/>
 			</h:selectOneMenu>
 			
-			<h:outputLabel value="Login"/>
-			<h:inputText value="#{pessoaBean.pessoa.login}"/>
+			<h:outputLabel value="Login" rendered="#{pessoaBean.permitirAcesso('ADMINISTRADOR')}"/>
+			<h:inputText value="#{pessoaBean.pessoa.login}" rendered="#{pessoaBean.permitirAcesso('ADMINISTRADOR')}"/>
 			
-			<h:outputLabel value="Senha"/>
-			<h:inputSecret value="#{pessoaBean.pessoa.senha}"/>
+			<h:outputLabel value="Senha" rendered="#{pessoaBean.permitirAcesso('ADMINISTRADOR')}"/>
+			<h:inputSecret value="#{pessoaBean.pessoa.senha}" rendered="#{pessoaBean.permitirAcesso('ADMINISTRADOR')}"/>
 			
 			<h:outputLabel />
 			<h:panelGroup>
 				<h:commandButton value="Salvar" action="#{pessoaBean.salvar}"/>
 				<h:commandButton value="Novo" action="#{pessoaBean.novo}"/>
 				<h:commandButton value="Limpar" type="reset"/>
-				<h:commandButton value="Remover" action="#{pessoaBean.remove}"/>
+				<h:commandButton value="Remover" action="#{pessoaBean.remove}" rendered="#{pessoaBean.permitirAcesso('ADMINISTRADOR')}"/>
 			</h:panelGroup>
 		</h:panelGrid>
 
-		<h:dataTable value="#{pessoaBean.listaPessoa}" var="pessoa" border="1">
+		<h:dataTable value="#{pessoaBean.listaPessoa}" var="pessoa" border="1" >
 			<f:facet name="header">
 				Pessoas cadastradas
 			</f:facet>
@@ -98,7 +98,7 @@
 					<f:setPropertyActionListener value="#{pessoa}" target="#{pessoaBean.pessoa}" />
 				</h:commandLink>
 			</h:column>
-			<h:column>
+			<h:column rendered="#{pessoaBean.permitirAcesso('ADMINISTRADOR')}">
 				<f:facet name="header">
 					Deletar
 				</f:facet>
