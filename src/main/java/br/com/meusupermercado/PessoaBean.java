@@ -54,7 +54,7 @@ public class PessoaBean {
 	}
 	
 	@PostConstruct
-	public void carregarTodos() {
+	private void carregarTodos() {
 		listaPessoa = daoGeneric.carregarTodos(Pessoa.class);
 	}
 	

@@ -52,5 +52,5 @@ public class DaoGeneric<T> {
 		
 		return lista;
 	}
-	
+
 }

@@ -94,13 +94,17 @@
 				<f:facet name="header">
 					Editar
 				</f:facet>
-				<h:commandLink value="Editar" />
+				<h:commandLink value="Editar" >
+					<f:setPropertyActionListener value="#{pessoa}" target="#{pessoaBean.pessoa}" />
+				</h:commandLink>
 			</h:column>
 			<h:column>
 				<f:facet name="header">
 					Deletar
 				</f:facet>
-				<h:commandLink value="Deletar" />
+				<h:commandLink value="Deletar" action="#{pessoaBean.remove}">
+					<f:setPropertyActionListener value="#{pessoa}" target="#{pessoaBean.pessoa}" />
+				</h:commandLink>
 			</h:column>
 		</h:dataTable>
 	</h:form>
