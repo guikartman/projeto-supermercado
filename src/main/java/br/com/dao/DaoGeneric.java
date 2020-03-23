@@ -22,4 +22,18 @@ public class DaoGeneric<T> {
 		return retorno;
 	}
 	
+	public void deletarPorId(Object obj,Class<T> classe) {
+		
+		EntityManager entityManager = JPAUtil.getEntityManager();
+		EntityTransaction transaction = entityManager.getTransaction();
+		transaction.begin();
+		
+		Object id = (Object) JPAUtil.getPrimaryKey(obj);
+		
+		entityManager.createQuery("delete from " + classe.getName()+" where id = "+id).executeUpdate();
+		
+		transaction.commit();
+		entityManager.close();
+	}
+	
 }

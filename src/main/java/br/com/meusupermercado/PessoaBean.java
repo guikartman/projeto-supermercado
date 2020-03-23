@@ -31,4 +31,15 @@ public class PessoaBean {
 		return "";
 	}
 	
+	public String novo() {
+		pessoa = new Pessoa();
+		return "";
+	}
+	
+	public String remove() {
+		daoGeneric.deletarPorId(pessoa, Pessoa.class);
+		pessoa = new Pessoa();
+		return "";
+	}
+	
 }
