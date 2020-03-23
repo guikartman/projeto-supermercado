@@ -56,6 +56,53 @@
 			</h:panelGroup>
 		</h:panelGrid>
 
+		<h:dataTable value="#{pessoaBean.listaPessoa}" var="pessoa" border="1">
+			<f:facet name="header">
+				Pessoas cadastradas
+			</f:facet>
+			<h:column>
+				<f:facet name="header">
+					Id
+				</f:facet>
+				<h:outputText value="#{pessoa.id}"/>
+			</h:column>
+			<h:column>
+				<f:facet name="header">
+					Nome
+				</f:facet>
+				<h:outputText value="#{pessoa.name}"/>
+			</h:column>
+			<h:column>
+				<f:facet name="header">
+					Sobrenome
+				</f:facet>
+				<h:outputText value="#{pessoa.sobrenome}"/>
+			</h:column>
+			<h:column>
+				<f:facet name="header">
+					Idade
+				</f:facet>
+				<h:outputText value="#{pessoa.idade}"/>
+			</h:column>
+			<h:column>
+				<f:facet name="header">
+					Sexo
+				</f:facet>
+				<h:outputText value="#{pessoa.sexo}"/>
+			</h:column>
+			<h:column>
+				<f:facet name="header">
+					Editar
+				</f:facet>
+				<h:commandLink value="Editar" />
+			</h:column>
+			<h:column>
+				<f:facet name="header">
+					Deletar
+				</f:facet>
+				<h:commandLink value="Deletar" />
+			</h:column>
+		</h:dataTable>
 	</h:form>
 
 </h:body>

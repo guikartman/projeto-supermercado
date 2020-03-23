@@ -1,5 +1,9 @@
 package br.com.meusupermercado;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 
@@ -12,6 +16,11 @@ public class PessoaBean {
 
 	private Pessoa pessoa = new Pessoa();
 	private DaoGeneric<Pessoa> daoGeneric = new DaoGeneric<Pessoa>();
+	private List<Pessoa> listaPessoa = new ArrayList<Pessoa>();
+	
+	public List<Pessoa> getListaPessoa() {
+		return listaPessoa;
+	}
 	
 	public Pessoa getPessoa() {
 		return pessoa;
@@ -28,6 +37,7 @@ public class PessoaBean {
 	
 	public String salvar() {
 		pessoa = daoGeneric.salvar(pessoa);
+		carregarTodos();
 		return "";
 	}
 	
@@ -39,7 +49,13 @@ public class PessoaBean {
 	public String remove() {
 		daoGeneric.deletarPorId(pessoa, Pessoa.class);
 		pessoa = new Pessoa();
+		carregarTodos();
 		return "";
+	}
+	
+	@PostConstruct
+	public void carregarTodos() {
+		listaPessoa = daoGeneric.carregarTodos(Pessoa.class);
 	}
 	
 }

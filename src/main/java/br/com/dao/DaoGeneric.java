@@ -1,5 +1,7 @@
 package br.com.dao;
 
+import java.util.List;
+
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
 
@@ -34,6 +36,21 @@ public class DaoGeneric<T> {
 		
 		transaction.commit();
 		entityManager.close();
+	}
+	
+	public List<T> carregarTodos(Class<T> classe){
+		List<T> lista = null;
+		
+		EntityManager entityManager = JPAUtil.getEntityManager();
+		EntityTransaction transaction = entityManager.getTransaction();
+		transaction.begin();
+		
+		lista = entityManager.createQuery("select p from "+ classe.getName()+ " p").getResultList();
+		
+		transaction.commit();
+		entityManager.close();
+		
+		return lista;
 	}
 	
 }
