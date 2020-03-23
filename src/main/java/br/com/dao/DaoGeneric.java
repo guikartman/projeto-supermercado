@@ -7,14 +7,19 @@ import br.com.jpautil.JPAUtil;
 
 public class DaoGeneric<T> {
 
-	public void salvar(T entidade) {
+	public T salvar(T entidade) {
+		T retorno = null;
+		
 		EntityManager entityManager = JPAUtil.getEntityManager();
 		EntityTransaction transaction = entityManager.getTransaction();
 		transaction.begin();
 		
-		entityManager.merge(entidade);
+		retorno = (T) entityManager.merge(entidade);
 		
 		transaction.commit();
 		entityManager.close();
+		
+		return retorno;
 	}
+	
 }

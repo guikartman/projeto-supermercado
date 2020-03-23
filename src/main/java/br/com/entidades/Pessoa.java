@@ -19,9 +19,13 @@ public class Pessoa implements Serializable{
 	private String name;
 	private String sobrenome;
 	private Integer idade;
+	private String sexo;
 	private String login;
 	private String senha;
 	private String tipoUsuario;
+	
+	public Pessoa() {
+	}
 	
 	public Long getId() {
 		return id;
@@ -64,6 +68,12 @@ public class Pessoa implements Serializable{
 	}
 	public void setTipoUsuario(String tipoUsuario) {
 		this.tipoUsuario = tipoUsuario;
+	}
+	public void setSexo(String sexo) {
+		this.sexo = sexo;
+	}
+	public String getSexo() {
+		return sexo;
 	}
 	
 	@Override
