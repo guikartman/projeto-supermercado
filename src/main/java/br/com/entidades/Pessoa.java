@@ -23,6 +23,7 @@ public class Pessoa implements Serializable{
 	private String login;
 	private String senha;
 	private String tipoUsuario;
+	private String email;
 	
 	public Pessoa() {
 	}
@@ -74,6 +75,12 @@ public class Pessoa implements Serializable{
 	}
 	public String getSexo() {
 		return sexo;
+	}
+	public String getEmail() {
+		return email;
+	}
+	public void setEmail(String email) {
+		this.email = email;
 	}
 	
 	@Override

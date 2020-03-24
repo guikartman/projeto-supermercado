@@ -25,6 +25,9 @@
 			<h:outputLabel value="Sobrenome:" />
 			<h:inputText value="#{pessoaBean.pessoa.sobrenome}" />
 			
+			<h:outputLabel value="Email:" />
+			<h:inputText value="#{pessoaBean.pessoa.email}" />
+			
 			<h:outputLabel value="Idade:" />
 			<h:inputText value="#{pessoaBean.pessoa.idade}" />
 			
@@ -39,6 +42,7 @@
 				<f:selectItem itemValue="ADMINISTRADOR" itemLabel="Administrador"/>
 				<f:selectItem itemValue="GERENTE" itemLabel="Gerente"/>
 				<f:selectItem itemValue="CAIXA" itemLabel="Caixa"/>
+				<f:selectItem itemValue="Cliente" itemLabel="Cliente"/>
 			</h:selectOneMenu>
 			
 			<h:outputLabel value="Login" rendered="#{pessoaBean.permitirAcesso('ADMINISTRADOR')}"/>
@@ -92,6 +96,12 @@
 			</h:column>
 			<h:column>
 				<f:facet name="header">
+					Email
+				</f:facet>
+				<h:outputText value="#{pessoa.email}"/>
+			</h:column>
+			<h:column>
+				<f:facet name="header">
 					Editar
 				</f:facet>
 				<h:commandLink value="Editar" >
@@ -107,6 +117,9 @@
 				</h:commandLink>
 			</h:column>
 		</h:dataTable>
+		<h:panelGrid>
+			<h:commandButton value="Email" action="envia-email"/>
+		</h:panelGrid>
 	</h:form>
 
 </h:body>

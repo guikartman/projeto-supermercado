@@ -1,5 +1,7 @@
 package br.com.repository;
 
+import java.util.List;
+
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
 
@@ -25,5 +27,23 @@ public class IPessoaDaoImpl implements IPessoaDao {
 
 		return pessoa;
 	}
+
+	@Override
+	public List<String> recuperaEmails() {
+		List<String> listaEmail = null;
+
+		EntityManager entityManager = JPAUtil.getEntityManager();
+		EntityTransaction transaction = entityManager.getTransaction();
+		transaction.begin();
+		
+		listaEmail = entityManager.createQuery("select p.email from Pessoa p").getResultList();
+		
+		transaction.commit();
+		entityManager.close();
+		
+		return listaEmail;
+	}
+
+	
 
 }
